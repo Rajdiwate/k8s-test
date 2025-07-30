@@ -40,7 +40,7 @@ jobs:
         run: |
           git clone https://github.com/Rajdiwate/ops.git 
           cd ops
-          sed -i 's|image: rajd0311/gitops-test:.*|image: rajd0311/gitops-test:${SHORT_SHA}|' deployment.yml
+          sed -i 's|image: rajd0311/gitops-test:.*|image: rajd0311/gitops-test:${SHORT_SHA}|' Deployments.yml
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
           git add .
