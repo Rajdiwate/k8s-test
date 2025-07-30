@@ -34,7 +34,7 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/gitops-test:${SHORT_SHA}
 
-      - name : Clone ops repo, update, and push
+      - name : Clone ops repo, update, and push to k8s-test
         env:
           PAT: ${{ secrets.PAT }}
         run: |
