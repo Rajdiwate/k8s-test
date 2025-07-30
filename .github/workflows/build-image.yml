@@ -33,3 +33,15 @@ jobs:
       - name: Push Docker Image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/gitops-test:${SHORT_SHA}
+
+      - name : Clone ops repo, update, and push
+        env:
+          PAT: ${{ secrets.PAT }}
+        run: |
+          git clone https://github.com/Rajdiwate/ops.git .
+          sed -i 's|image: rajd0311/gitops-test:.*|image: rajd0311/gitops-test:${SHORT_SHA}|' deployment.yml
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Update k8s-test image to ${SHORT_SHA}"
+          git push https://${PAT}@github.com/Rajdiwate/ops.git main
