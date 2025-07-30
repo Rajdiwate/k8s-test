@@ -38,7 +38,8 @@ jobs:
         env:
           PAT: ${{ secrets.PAT }}
         run: |
-          git clone https://github.com/Rajdiwate/ops.git .
+          git clone https://github.com/Rajdiwate/ops.git 
+          cd ops
           sed -i 's|image: rajd0311/gitops-test:.*|image: rajd0311/gitops-test:${SHORT_SHA}|' deployment.yml
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
